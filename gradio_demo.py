@@ -11,9 +11,11 @@ import base64, os
 from utils import check_ocr_box, get_yolo_model, get_caption_model_processor, get_som_labeled_img
 import torch
 from PIL import Image
+import devicetorch
 
+DEVICE_NAME = devicetorch.get(torch)
 yolo_model = get_yolo_model(model_path='weights/omniparser/icon_caption_blip2/best.pt')
-caption_model_processor = get_caption_model_processor(model_name_or_path="weights/omniparser/icon_caption_blip2", device='cuda')
+caption_model_processor = get_caption_model_processor(model_name_or_path="weights/omniparser/icon_caption_blip2", device=DEVICE_NAME)
 platform = 'pc'
 if platform == 'pc':
     draw_bbox_config = {
@@ -53,8 +55,7 @@ MARKDOWN = """
 OmniParser is a screen parsing tool to convert general GUI screen to structured elements.  **Trained models will be released soon**
 """
 
-DEVICE = torch.device(devicetorch.get(torch))
-#DEVICE = torch.device('cuda')
+DEVICE = torch.device(DEVICE_NAME)
 
 # @spaces.GPU
 # @torch.inference_mode()

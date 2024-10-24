@@ -31,11 +31,12 @@ import re
 from torchvision.transforms import ToPILImage
 import supervision as sv
 import torchvision.transforms as T
+import devicetorch
 
 
 def get_caption_model_processor(model_name_or_path="Salesforce/blip2-opt-2.7b", device=None):
     if not device:
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+        device = devicetorch.get(torch)
     from transformers import Blip2Processor, Blip2ForConditionalGeneration
     processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
     if device == 'cpu':
