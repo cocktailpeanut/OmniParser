@@ -14,7 +14,8 @@ from PIL import Image
 import devicetorch
 
 DEVICE_NAME = devicetorch.get(torch)
-yolo_model = get_yolo_model(model_path='weights/omniparser/icon_caption_blip2/best.pt')
+#yolo_model = get_yolo_model(model_path='weights/omniparser/icon_caption_blip2/best.pt')
+yolo_model = get_yolo_model(model_path='weights/omniparser/icon_detect/best.pt')
 caption_model_processor = get_caption_model_processor(model_name_or_path="weights/omniparser/icon_caption_blip2", device=DEVICE_NAME)
 platform = 'pc'
 if platform == 'pc':
